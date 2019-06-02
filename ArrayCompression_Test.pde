@@ -1,3 +1,4 @@
+boolean debug;
 int fullSize;
 int compSize;
 int metaCount;
@@ -10,11 +11,17 @@ void settings(){
   size(600,400);  
 }  
 void setup(){
-  //shape stuff
+  debug = false; //prints things to console
   noStroke();
   //array stuff
-  fullSize = 32;
-  compSize = 10;
+  //pre-determined size
+  //fullSize = 27;
+  //compSize = 40;
+  //random size
+  compSize = int(random(8,256));
+  fullSize = int(random(8,256));
+  
+  println(fullSize + " to " + compSize);
   fullArray = new ArrayList();
   compArray = new ArrayList();
   for (int i = 0; i < fullSize; i++){
@@ -28,12 +35,16 @@ void setup(){
   metaCount = 0;
   while (compArray.size() != compSize){
     metaCount++;
-    //println("count: "+ metaCount);
+    if (debug){
+      println("count: "+ metaCount);
+    }
     compress = new CompressArray(compArray.size(),compSize);
     compress.cMain();
   }  
-  println(fullArray);
-  println(compArray);
+  if (debug){
+    println(fullArray);
+    println(compArray);
+  }
 } 
 void draw(){
   fill(20,25,45); 
