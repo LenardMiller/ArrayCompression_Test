@@ -15,11 +15,11 @@ void setup(){
   noStroke();
   //array stuff
   //pre-determined size
-  //fullSize = 27;
-  //compSize = 40;
+  fullSize = 5;
+  compSize = 216;
   //random size
-  compSize = int(random(8,256));
-  fullSize = int(random(8,256));
+  //compSize = int(random(8,256));
+  //fullSize = int(random(8,256));
   
   println(fullSize + " to " + compSize);
   fullArray = new ArrayList();
