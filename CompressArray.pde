@@ -13,6 +13,7 @@ class CompressArray{
     count = 0;
     changed = 0;
   }  
+  
   void cMain(){
     if (factor < 0){ //<>//
       for (int i = 0; i < oldSize; i++){
@@ -27,30 +28,25 @@ class CompressArray{
         count++;
       }  
     }  
-    else if (factor > 0){
-      if (debug){
-        println("period: " + period);
-      }
-      for (int i = 0; i <= newSize-1; i++){
-        if (count >= ceil(period)){
-          if (debug){
-            println(compArray.size() +" out of "+ (metaCount+1)*fullSize);
-          }  
-          if (compArray.size() < (metaCount+1)*fullSize){
-            if (i != 0 && i < compArray.size()+1){
-              compArray.add(i,compArray.get(i-1));
-              if (debug){
-                println(compArray.get(i-1) + " at " + i);
-              }
-            }  
+    if (factor > 0){
+       int perNewCel = (int)((float)newSize / (float)oldSize);
+       println(newSize +" / "+ oldSize +" = "+ perNewCel);
+       int celCount = 0;
+       compArray = new ArrayList<Integer>();
+       for (int i = 0; i < newSize; i++) {
+          compArray.add(celCount);
+          //println(i - celCount*perNewCel +", "+ perNewCel);
+          if (i - celCount*perNewCel >= perNewCel) {
+             celCount++;
           }
-          if (debug){
-            println(compArray);
-          }
-          count = -1;
-        }  
-        count++;
-      }  
+       }  
+       int x = 0;
+       for (int i = 0; i < compArray.size(); i++) {
+         if (x == compArray.get(i)) {
+           x++;
+           println(x + ", " + str((x*perNewCel)));
+         }  
+       }  
     }  
-  }  
+  }
 }  

@@ -11,7 +11,7 @@ class DisplayArray{
   }
   void daMain(){
     for (int i = int(size-1); i >= 0; i--){
-      int set = array.get(i);
+      int set = array.get(i); //<--
       fill(set*(255/float(fullSize)));
       rect(i*width/size, y, width/size+1, height/2); 
     }  
